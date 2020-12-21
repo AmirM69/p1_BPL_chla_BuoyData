@@ -1,8 +1,13 @@
-X = 10 .^ chlM;
-%Y = chlPFC
-Y = 10 .^ chlPPC;
 
-scatter(X, Y,  'filled' , 'g');
+addpath('..\Accessory_codes_MATLAB')
+    
+data = readtable('model_eval.csv');
+
+X = 10 .^ data.Lab_Chla;
+Y = data.ChlorophyllShallow;
+%Y = 10 .^ data.chla_pred;
+
+scatter(X, Y,  'filled' , 'b');
  line([1 max(X)+50],[1 max(X)+50], 'color', 'r', 'LineStyle','--') ;
 set(gca, 'XTick', [1 10 100], 'xticklabel', {'1', '10', '100'});
 set(gca, 'YTick', [1 10 100], 'yticklabel', {'1', '10', '100'});
@@ -34,7 +39,6 @@ rho = correlation(2);
 
 % text(0.05, 0.85, ['f = ' eq],'Units','normalized','Interpreter', 'none', 'FontSize', 11)
 text(0.05, 0.95, ['N = ' num2str(length(X))],'Units','normalized', 'Interpreter', 'tex', 'FontSize', 11)
-%text(0.05, 0.90, ['\rho = ' num2str(round(rho,2))],'Units','normalized', 'FontSize', 11)
 % text(0.05, 0.90, ['r^2 = ' num2str(round(n.rsquare,2))],'Units','normalized', 'FontSize', 11)
 for i = 1:length(metrics)
 %     if i ==2 
